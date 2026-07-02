@@ -1,0 +1,90 @@
+.receipt {
+  width: 72mm;
+  margin: 0 auto;
+  padding: 5mm;
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.company {
+  font-size: 15px;
+  font-weight: 700;
+
+  margin-top: 2px;
+}
+
+.address {
+  margin-top: 4px;
+}
+
+.line {
+  border-top: 1px dashed black;
+
+  margin: 10px 0;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.tableHeader,
+.row {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    50px
+    80px;
+
+  align-items: center;
+}
+
+.tableHeader span:nth-child(2),
+.row span:nth-child(2) {
+  text-align: center;
+}
+
+.tableHeader span:nth-child(3),
+.row span:nth-child(3) {
+  text-align: right;
+}
+
+.itemName {
+  word-break: break-word;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footer {
+  text-align: center;
+
+  line-height: 1.6;
+}
+
+@page {
+  margin: 0;
+  size: 80mm auto;
+}

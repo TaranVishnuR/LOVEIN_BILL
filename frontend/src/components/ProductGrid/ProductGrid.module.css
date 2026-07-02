@@ -1,0 +1,217 @@
+.container {
+  height: 100%;
+
+  padding: 20px;
+  padding-bottom: 120px;
+
+  overflow-y: auto;
+}
+
+.header {
+  margin: 0 0 20px 0;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(240px, 1fr));
+
+  gap: 18px;
+  padding-bottom: 60px;
+
+  align-content: start;
+}
+
+.card {
+  height: 160px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+  position: relative;
+}
+
+.deleteBtn {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #e53935;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+.deleteBtn:hover {
+  opacity: 0.9;
+}
+
+.card:hover {
+  border-color: black;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #111;
+
+  text-align: center;
+}
+
+.price {
+  margin-top: 10px;
+
+  font-size: 30px;
+  font-weight: 800;
+
+  color: #111;
+}
+
+.editBadge {
+  margin-top: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #1976d2;
+}
+
+.stock {
+  margin-top: 8px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #666;
+}
+
+.outOfStock {
+  margin-top: 8px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #e53935;
+}
+
+.card:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  background: #f5f5f5;
+}
+
+.card {
+  position: relative;
+}
+
+.deleteOverlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.98
+  );
+
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 16px;
+
+  z-index: 20;
+}
+
+.deleteText {
+  font-size: 18px;
+  font-weight: 700;
+
+  text-align: center;
+
+  color: #111;
+}
+
+.deleteActions {
+  display: flex;
+  gap: 10px;
+}
+
+.cancelBtn,
+.confirmDeleteBtn {
+  border: none;
+  border-radius: 8px;
+
+  padding: 10px 16px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.cancelBtn {
+  background: #e0e0e0;
+}
+
+.confirmDeleteBtn {
+  background: #e53935;
+  color: white;
+}
+
+.confirmDeleteBtn:hover {
+  background: #c62828;
+}
+
+.cancelBtn,
+.confirmDeleteBtn {
+  min-width: 90px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  user-select: none;
+}

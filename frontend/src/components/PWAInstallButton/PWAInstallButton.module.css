@@ -1,0 +1,22 @@
+.installButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #5b3df5;
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.installButton:hover {
+  opacity: 0.9;
+}

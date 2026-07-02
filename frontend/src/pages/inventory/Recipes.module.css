@@ -1,0 +1,422 @@
+*{
+  box-sizing:border-box;
+}
+
+.page{
+  padding:30px;
+  background:#f6f8fc;
+  min-height:100%;
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
+
+.header h1{
+  margin:0;
+  font-size:34px;
+  font-weight:700;
+  color:#111827;
+}
+
+.addButton{
+
+  border:none;
+  outline:none;
+  cursor:pointer;
+
+  background:#2563eb;
+  color:white;
+
+  padding:14px 22px;
+
+  border-radius:10px;
+
+  font-size:15px;
+  font-weight:600;
+
+  transition:.25s;
+}
+
+.addButton:hover{
+
+  background:#1d4ed8;
+
+}
+
+/* =====================================================
+   Summary Cards
+===================================================== */
+
+.cards{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:22px;
+
+  margin-bottom:25px;
+
+}
+
+.card{
+
+  background:white;
+
+  border-radius:14px;
+
+  padding:24px;
+
+  box-shadow:0 5px 18px rgba(0,0,0,.06);
+
+}
+
+.card p{
+
+  margin:0 0 10px;
+
+  color:#6b7280;
+
+  font-size:14px;
+
+}
+
+.card h2{
+
+  margin:0;
+
+  font-size:32px;
+
+  color:#111827;
+
+}
+
+/* =====================================================
+   Search
+===================================================== */
+
+.searchBar{
+
+  margin-bottom:22px;
+
+}
+
+.searchBar input{
+
+  width:340px;
+
+  padding:13px 18px;
+
+  border:1px solid #d1d5db;
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:15px;
+
+  transition:.2s;
+
+}
+
+.searchBar input:focus{
+
+  border-color:#2563eb;
+
+}
+
+/* =====================================================
+   Table
+===================================================== */
+
+.tableCard{
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:0 5px 18px rgba(0,0,0,.06);
+
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+thead{
+
+  background:#f3f4f6;
+
+}
+
+th{
+
+  text-align:left;
+
+  padding:18px;
+
+  color:#374151;
+
+  font-size:15px;
+
+  font-weight:600;
+
+}
+
+td{
+
+  padding:16px 18px;
+
+  border-top:1px solid #edf0f4;
+
+  font-size:14px;
+
+  color:#374151;
+
+}
+
+tbody tr:hover{
+
+  background:#f9fafb;
+
+}
+
+/* =====================================================
+   Action Buttons
+===================================================== */
+
+.view{
+
+  border:none;
+
+  cursor:pointer;
+
+  background:#14b8a6;
+
+  color:white;
+
+  padding:8px 14px;
+
+  border-radius:8px;
+
+  margin-right:8px;
+
+}
+
+.view:hover{
+
+  background:#0f766e;
+
+}
+
+.edit{
+
+  border:none;
+
+  cursor:pointer;
+
+  background:#2563eb;
+
+  color:white;
+
+  padding:8px 14px;
+
+  border-radius:8px;
+
+  margin-right:8px;
+
+}
+
+.edit:hover{
+
+  background:#1d4ed8;
+
+}
+
+.delete{
+
+  border:none;
+
+  cursor:pointer;
+
+  background:#ef4444;
+
+  color:white;
+
+  padding:8px 14px;
+
+  border-radius:8px;
+
+}
+
+.delete:hover{
+
+  background:#dc2626;
+
+}
+
+/* =====================================================
+   Delete Confirmation
+===================================================== */
+
+.deleteRow{
+
+  background:#fff7f7;
+
+  padding:22px;
+
+}
+
+.deleteContent{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:20px;
+
+}
+
+.deleteMessage{
+
+  flex:1;
+
+  font-size:15px;
+
+  color:#374151;
+
+  font-weight:500;
+
+}
+
+.deleteButtons{
+
+  display:flex;
+
+  gap:10px;
+
+  flex-shrink:0;
+
+}
+
+.cancelDelete{
+
+  border:none;
+
+  cursor:pointer;
+
+  background:#e5e7eb;
+
+  color:#374151;
+
+  padding:8px 16px;
+
+  border-radius:8px;
+
+}
+
+.cancelDelete:hover{
+
+  background:#d1d5db;
+
+}
+
+.confirmDelete{
+
+  border:none;
+
+  cursor:pointer;
+
+  background:#ef4444;
+
+  color:white;
+
+  padding:8px 16px;
+
+  border-radius:8px;
+
+}
+
+.confirmDelete:hover{
+
+  background:#dc2626;
+
+}
+
+/* =====================================================
+   Empty State
+===================================================== */
+
+.empty{
+
+  text-align:center;
+
+  padding:45px;
+
+  color:#9ca3af;
+
+  font-size:15px;
+
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media (max-width:1200px){
+
+  .cards{
+
+    grid-template-columns:repeat(2,1fr);
+
+  }
+
+}
+
+@media (max-width:900px){
+
+  .header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+  }
+
+  .cards{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .searchBar input{
+
+    width:100%;
+
+  }
+
+  .tableCard{
+
+    overflow-x:auto;
+
+  }
+
+}

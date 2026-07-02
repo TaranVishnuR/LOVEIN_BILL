@@ -1,0 +1,25 @@
+.page {
+  width: 1200px;
+  height: 800px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+}
+
+.main {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: 60% 40%;
+
+  overflow: hidden;
+}
+

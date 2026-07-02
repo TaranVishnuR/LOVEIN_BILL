@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 16px; /* Safeguards boundaries on compressed laptops */
+}
+
+.modal {
+  width: 100%;
+  max-width: 760px; /* Maintains your wider layout for dual-column alignment */
+  max-height: calc(100vh - 32px); /* Caps height to prevent spill-over on short viewports */
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Activates internal structural scroll track if fields overflow */
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #111827;
+  font-weight: 700;
+}
+
+/* ==========================================================
+   Form Grid
+   ========================================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  width: 100%;
+}
+
+.grid input {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+}
+
+.grid input:focus {
+  border-color: #2563eb;
+}
+
+.grid select {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  background: white;
+}
+
+.grid select:focus {
+  border-color: #2563eb;
+}
+
+/* ==========================================================
+   Textarea
+   ========================================================== */
+textarea {
+  width: 100%;
+  margin-top: 18px;
+  min-height: 80px; /* Reduced to balance space budgets on laptops */
+  resize: vertical;
+  padding: 14px 15px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+textarea:focus {
+  border-color: #2563eb;
+}
+
+/* ==========================================================
+   Buttons
+   ========================================================== */
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 28px;
+  width: 100%;
+}
+
+.cancel {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cancel:hover {
+  background: #e5e7eb;
+}
+
+.save {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.save:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================================
+   Strict Breakpoint Overrides for 1200x800 Laptops
+   ========================================================== */
+@media (max-height: 820px) {
+  .modal {
+    padding: 20px;
+  }
+  .modal h2 {
+    margin-bottom: 16px;
+    font-size: 22px;
+  }
+  .grid {
+    gap: 12px;
+  }
+  .grid input,
+  .grid select {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  textarea {
+    margin-top: 12px;
+    min-height: 60px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .buttons {
+    margin-top: 16px;
+  }
+}
+
+/* Mobile & Small Breakpoints */
+@media (max-width: 768px) {
+  .modal {
+    padding: 22px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .buttons {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .buttons button {
+    width: 100%;
+  }
+}

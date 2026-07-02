@@ -1,0 +1,155 @@
+/* --- Global Reset & Page Setup --- */
+* {
+  box-sizing: border-box; /* Crucial: stops layout overflow */
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  padding: 24px; /* Slightly reduced for a cleaner laptop viewport frame */
+  background: #f7f8fc;
+  min-height: 100vh;
+  overflow-y: auto;
+  max-width: 1650px; /* Prevents layouts from overstretching on massive screens */
+  margin: 0 auto;    /* Centers dashboard content on wide monitors */
+  width: 100%;
+}
+
+.page h1 {
+  margin-bottom: 24px;
+  font-size: 1.85rem; /* Flexible unit for cleaner laptop text scaling */
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ==========================================
+   Summary Cards (All 7 Forced in 1 Line)
+========================================== */
+.summaryCards {
+  display: flex; /* Forces all cards into a single row */
+  gap: 14px;     /* Tightened gap to perfectly fit 7 columns */
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.card {
+  flex: 1;       /* Gives all 7 cards mathematically equal width */
+  min-width: 0;  /* Prevents titles/data from pushing card widths out of alignment */
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px; /* Optimized padding for 7-in-a-row layout */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(229, 231, 235, 0.5); /* Subtle border for layout structure */
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  font-size: 13px; /* Scaled down for high information density */
+  color: #6b7280;
+  margin-bottom: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Keeps layout safe if text is long */
+}
+
+.card h2 {
+  font-size: 24px; /* Prevents large number formats from wrapping awkwardly */
+  color: #111827;
+  font-weight: 700;
+}
+
+/* ==========================================
+   Charts Grid Systems (Responsive Ratios)
+========================================== */
+.chartGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Flawless 66% vs 33% ratio */
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.bottomGrid,
+.lastGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Balanced 50/50 block layouts */
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+/* Universal Dashboard Containers */
+.chartBox,
+.smallChart,
+.lastCard {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.chartBox h2,
+.smallChart h2,
+.lastCard h2 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* ==========================================
+   Recharts Adjustments
+========================================== */
+.recharts-wrapper {
+  font-size: 12px;
+  max-width: 100% !important; /* Prevents canvas charts from overflowing borders */
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: #6b7280;
+}
+
+.recharts-legend-item-text {
+  color: #374151 !important;
+}
+
+/* ==========================================
+   Custom UI Scrollbars
+========================================== */
+.page::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+/* ==========================================
+   Responsive Breakpoints (Laptops & Tablets)
+========================================== */
+@media (max-width: 1280px) {
+  /* On small laptops, allow 7 cards to horizontally scroll safely instead of breaking layout */
+  .summaryCards {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .card {
+    min-width: 140px; /* Ensures text inside cards remains legible */
+    flex: calc(100% / 7);
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Stack grids into individual rows for tablet displays */
+  .chartGrid,
+  .bottomGrid,
+  .lastGrid {
+    grid-template-columns: 1fr;
+  }
+}

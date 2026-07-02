@@ -1,0 +1,438 @@
+/* ==========================================================
+   Overlay
+========================================================== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  padding: 24px;
+}
+
+/* ==========================================================
+   Modal
+========================================================== */
+
+.modal {
+
+  width: 720px;
+
+  max-width: 100%;
+
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+
+}
+
+.modal h2{
+
+  margin:0 0 26px;
+
+  font-size:28px;
+
+  font-weight:700;
+
+  color:#111827;
+
+}
+
+/* ==========================================================
+   Form
+========================================================== */
+
+.formGroup{
+
+  display:flex;
+
+  flex-direction:column;
+
+  margin-bottom:18px;
+
+}
+
+.formGroup label{
+
+  font-size:14px;
+
+  font-weight:600;
+
+  color:#374151;
+
+  margin-bottom:8px;
+
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea{
+
+  width:100%;
+
+  padding:12px 14px;
+
+  font-size:14px;
+
+  border:1px solid #d1d5db;
+
+  border-radius:10px;
+
+  outline:none;
+
+  transition:.2s;
+
+  background:white;
+
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus{
+
+  border-color:#2563eb;
+
+  box-shadow:
+  0 0 0 3px rgba(37,99,235,.12);
+
+}
+
+.formGroup textarea{
+
+  resize:vertical;
+
+  min-height:90px;
+
+}
+
+/* ==========================================================
+   Preview Card
+========================================================== */
+
+.previewCard{
+
+  margin-top:28px;
+
+  border:1px solid #dbeafe;
+
+  background:#f8fbff;
+
+  border-radius:12px;
+
+  padding:20px;
+
+}
+
+.previewCard h3{
+
+  margin:0 0 18px;
+
+  font-size:18px;
+
+  color:#111827;
+
+}
+
+.previewCard p{
+
+  margin:8px 0;
+
+  color:#374151;
+
+  font-size:14px;
+
+}
+
+.previewCard strong{
+
+  color:#111827;
+
+}
+
+/* ==========================================================
+   Loading
+========================================================== */
+
+.loading{
+
+  margin-top:24px;
+
+  padding:18px;
+
+  text-align:center;
+
+  border-radius:10px;
+
+  background:#f3f4f6;
+
+  color:#374151;
+
+  font-weight:600;
+
+}
+
+/* ==========================================================
+   Status
+========================================================== */
+
+.success{
+
+  color:#15803d;
+
+  font-weight:700;
+
+}
+
+.error{
+
+  color:#dc2626;
+
+  font-weight:700;
+
+}
+
+/* ==========================================================
+   Ingredient Table
+   (Will be used in next step)
+========================================================== */
+
+.previewTable{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  margin-top:16px;
+
+}
+
+.previewTable th{
+
+  background:#eff6ff;
+
+  color:#1e3a8a;
+
+  font-size:13px;
+
+  font-weight:700;
+
+  padding:12px;
+
+  text-align:left;
+
+  border-bottom:1px solid #dbeafe;
+
+}
+
+.previewTable td{
+
+  padding:12px;
+
+  border-bottom:1px solid #edf2f7;
+
+  font-size:14px;
+
+}
+
+.previewTable tr:last-child td{
+
+  border-bottom:none;
+
+}
+
+/* ==========================================================
+   Stock Badges
+========================================================== */
+
+.good{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:5px 10px;
+
+  border-radius:999px;
+
+  background:#dcfce7;
+
+  color:#166534;
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+.bad{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:5px 10px;
+
+  border-radius:999px;
+
+  background:#fee2e2;
+
+  color:#b91c1c;
+
+  font-size:12px;
+
+  font-weight:700;
+
+}
+
+/* ==========================================================
+   Actions
+========================================================== */
+
+.actions{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:12px;
+
+  margin-top:28px;
+
+}
+
+.cancel{
+
+  border:none;
+
+  background:#e5e7eb;
+
+  color:#374151;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+.cancel:hover{
+
+  background:#d1d5db;
+
+}
+
+.save{
+
+  border:none;
+
+  background:#2563eb;
+
+  color:white;
+
+  padding:12px 24px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+.save:hover{
+
+  background:#1d4ed8;
+
+}
+
+.save:disabled{
+
+  background:#9ca3af;
+
+  cursor:not-allowed;
+
+}
+
+/* ==========================================================
+   Scrollbar
+========================================================== */
+
+.modal::-webkit-scrollbar{
+
+  width:8px;
+
+}
+
+.modal::-webkit-scrollbar-thumb{
+
+  background:#cbd5e1;
+
+  border-radius:999px;
+
+}
+
+.modal::-webkit-scrollbar-track{
+
+  background:transparent;
+
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media (max-width:768px){
+
+  .modal{
+
+    width:100%;
+
+    padding:22px;
+
+  }
+
+  .actions{
+
+    flex-direction:column;
+
+  }
+
+  .cancel,
+  .save{
+
+    width:100%;
+
+  }
+
+}

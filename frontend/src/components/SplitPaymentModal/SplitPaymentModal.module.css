@@ -1,0 +1,209 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 420px;
+
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+.modal h2 {
+  margin: 0;
+
+  text-align: center;
+
+  font-size: 28px;
+
+  color: #111;
+}
+
+.totalBox {
+  background: #f5f7fb;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  text-align: center;
+}
+
+.totalBox span {
+  display: block;
+
+  color: #666;
+
+  font-size: 16px;
+
+  margin-bottom: 8px;
+}
+
+.totalBox h1 {
+  margin: 0;
+
+  font-size: 36px;
+
+  color: #111;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.inputGroup label {
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: #222;
+}
+
+.inputGroup input {
+  height: 52px;
+
+  border: 2px solid #d8d8d8;
+
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 18px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.inputGroup input:focus {
+  border-color: #428de9;
+}
+
+.summary {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  background: #fafafa;
+
+  border-radius: 10px;
+
+  padding: 16px;
+}
+
+.summary div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.summary span {
+  color: #666;
+
+  font-size: 15px;
+}
+
+.summary strong {
+  font-size: 24px;
+}
+
+.success {
+  color: #16a34a;
+}
+
+.error {
+  color: #dc2626;
+}
+
+.warning {
+  margin: 0;
+
+  text-align: center;
+
+  color: #dc2626;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 14px;
+}
+
+.cancelBtn,
+.confirmBtn {
+  width: 140px;
+
+  height: 52px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.cancelBtn {
+  background: #e5e7eb;
+
+  color: #111;
+}
+
+.cancelBtn:hover {
+  background: #d6d8dc;
+}
+
+.confirmBtn {
+  background: #428de9;
+
+  color: white;
+}
+
+.confirmBtn:hover:not(:disabled) {
+  background: #2d78d5;
+}
+
+.confirmBtn:disabled {
+  background: #cfcfcf;
+
+  color: #888;
+
+  cursor: not-allowed;
+}

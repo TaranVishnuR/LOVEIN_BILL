@@ -1,0 +1,253 @@
+* {
+  box-sizing: border-box;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 900px; /* Wider footprint to cleanly show all 8 data columns */
+  max-height: calc(100vh - 40px);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   Header Elements
+   ========================================================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close:hover {
+  color: #111827;
+}
+
+/* ==========================================================================
+   4-Card Summary Grid Configuration
+   ========================================================================== */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card span {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card strong {
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   Description Block
+   ========================================================================== */
+.descriptionCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.descriptionCard h3 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.descriptionCard p {
+  margin: 0;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Ingredients Data Table
+   ========================================================================== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table td {
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   Stock Status Badges
+   ========================================================================== */
+.good, .bad {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.good {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.bad {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   Footer Total Cost & Actions Block
+   ========================================================================== */
+.totalCost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-top: 2px solid #e2e8f0;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.totalCost strong {
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.closeButton {
+  background: #091224;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background: #1e293b;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Laptop Aspect Ratio Optimizations (1200x800 Form Factors)
+   ========================================================================== */
+@media (max-height: 820px) {
+  .modal {
+    padding: 20px;
+  }
+  .summaryGrid {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .card {
+    padding: 10px;
+  }
+  .card strong {
+    font-size: 14px;
+  }
+  .descriptionCard {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  .table th, .table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

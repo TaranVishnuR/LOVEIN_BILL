@@ -1,0 +1,324 @@
+.page {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #f5f7fb;
+  min-height: 100%;
+}
+
+.topHeaderBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* ==========================
+   EXPORT ACTIONS
+========================== */
+.exportActionsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.exportPdfBtn,
+.exportExcelBtn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s, opacity 0.2s;
+}
+
+.exportPdfBtn {
+  background: #dc2626;
+  color: white;
+}
+
+.exportExcelBtn {
+  background: #10b981;
+  color: white;
+}
+
+.exportPdfBtn:hover,
+.exportExcelBtn:hover {
+  opacity: 0.93;
+}
+
+.exportPdfBtn:active,
+.exportExcelBtn:active {
+  transform: scale(0.97);
+}
+
+/* ==========================
+   FILTERS
+========================== */
+.filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterBtn,
+.activeFilter {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.filterBtn {
+  background: white;
+  color: #374151;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.filterBtn:hover {
+  background: #eef4ff;
+}
+
+.activeFilter {
+  background: #2563eb;
+  color: white;
+}
+
+/* ==========================
+   SUMMARY CARDS
+========================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.card h2 {
+  font-size: 30px;
+  color: #2563eb;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ==========================
+   TABLE LAYOUT
+========================== */
+.tableContainer {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+  overflow: auto;
+  flex: 1;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  background: #e9ebf0;
+  z-index: 5;
+}
+
+.table th {
+  padding: 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569; /* Fixed visual contrast issue on light header fields */
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+  color: #374151;
+}
+
+.table tbody tr {
+  transition: 0.2s;
+}
+
+.table tbody tr:hover {
+  background: #f8fbff;
+}
+
+/* ==========================
+   EMPTY STATE INDICATORS
+========================== */
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+  font-size: 16px;
+}
+
+/* ==========================
+   ON-DEMAND EXPORT MODAL INTERFACE
+========================== */
+.exportOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.exportModalCard {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exportModalCard h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.exportModalCard p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+
+.exportModalOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exportModalOptions button {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  color: #374151;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.exportModalOptions button:hover:not(:disabled) {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.exportModalOptions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.exportModalClose {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 6px;
+  transition: color 0.2s;
+}
+
+.exportModalClose:hover {
+  color: #4b5563;
+}
+
+/* ==========================
+   RESPONSIVE MEDIA QUERIES
+========================== */
+@media (max-width: 1400px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .topHeaderBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .exportActionsContainer {
+    width: 100%;
+  }
+  
+  .exportPdfBtn,
+  .exportExcelBtn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filterBtn,
+  .activeFilter {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,338 @@
+.page {
+  padding: 30px;
+  background: #f6f8fc;
+  min-height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.addButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  background: #2563eb;
+  color: white;
+
+  padding: 14px 22px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  transition: .25s;
+}
+
+.addButton:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================
+   Summary Cards
+========================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+.card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 32px;
+  color: #111827;
+}
+
+/* ==========================================
+   Search
+========================================== */
+
+.searchBar {
+  margin-bottom: 22px;
+}
+
+.searchBar input {
+  width: 340px;
+
+  padding: 13px 18px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  outline: none;
+
+  font-size: 15px;
+
+  transition: .2s;
+}
+
+.searchBar input:focus {
+  border-color: #2563eb;
+}
+
+/* ==========================================
+   Table
+========================================== */
+
+.tableCard {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0,0,0,.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+}
+
+th {
+  text-align: left;
+  padding: 18px;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+td {
+  padding: 16px 18px;
+  border-top: 1px solid #edf0f4;
+  font-size: 14px;
+  color: #374151;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.edit {
+  border: none;
+  cursor: pointer;
+
+  background: #2563eb;
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+
+  margin-right: 8px;
+}
+
+.edit:hover {
+  background: #1d4ed8;
+}
+
+.delete {
+  border: none;
+  cursor: pointer;
+
+  background: #ef4444;
+  color: white;
+
+  padding: 8px 14px;
+
+  border-radius: 8px;
+}
+
+.delete:hover {
+  background: #dc2626;
+}
+
+/* ==========================================
+   Delete Row
+========================================== */
+
+.deleteRow{
+  background:#fff7f7;
+  padding:22px;
+}
+
+.deleteContent{
+  display:flex;
+  justify-content:centre;
+  align-items:center;
+  width:100%;
+  gap:28px;
+}
+
+.deleteMessage{
+  font-size:18px;
+  color:#374151;
+  font-weight:500;
+  white-space:nowrap;
+  margin-left:180px;
+}
+
+.deleteButtons{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-left:40px;
+}
+
+.confirmDelete {
+  border: none;
+  cursor: pointer;
+
+  background: #ef4444;
+  color: white;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+}
+
+.confirmDelete:hover {
+  background: #dc2626;
+}
+
+.cancelDelete {
+  border: none;
+  cursor: pointer;
+
+  background: #e5e7eb;
+  color: #374151;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+}
+
+.cancelDelete:hover {
+  background: #d1d5db;
+}
+
+/* ==========================================
+   Empty State
+========================================== */
+
+.empty {
+  text-align: center;
+  padding: 45px;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+.supplierInfo{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.activeBadge{
+  display:inline-block;
+  width:max-content;
+  padding:3px 10px;
+  border-radius:20px;
+  background:#dcfce7;
+  color:#15803d;
+  font-size:12px;
+  font-weight:600;
+}
+
+.inactiveBadge{
+  display:inline-block;
+  width:max-content;
+  padding:3px 10px;
+  border-radius:20px;
+  background:#e5e7eb;
+  color:#6b7280;
+  font-size:12px;
+  font-weight:600;
+}
+
+.activate{
+  border:none;
+  cursor:pointer;
+  background:#16a34a;
+  color:white;
+  padding:8px 14px;
+  border-radius:8px;
+  margin-left:8px;
+}
+
+.activate:hover{
+  background:#15803d;
+}
+
+.deactivate{
+  border:none;
+  cursor:pointer;
+  background:#f59e0b;
+  color:white;
+  padding:8px 14px;
+  border-radius:8px;
+  margin-left:8px;
+}
+
+.deactivate:hover{
+  background:#d97706;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 1200px) {
+
+  .cards {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .searchBar input {
+    width: 100%;
+  }
+
+  .tableCard {
+    overflow-x: auto;
+  }
+
+}

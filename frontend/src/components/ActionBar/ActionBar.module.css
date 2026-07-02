@@ -1,0 +1,84 @@
+.bar {
+  height: 90px;
+
+  border-top: 1px solid #ddd;
+
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  background: #fafafa;
+
+  flex-shrink: 0;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.paymentBtn {
+  width: 120px;
+  height: 50px;
+
+  border: 2px solid #ddd;
+  border-radius: 10px;
+
+  background: white;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.activePayment {
+  background: #428de9;
+  color: white;
+
+  border-color: #111;
+}
+
+.button {
+  width: 170px;
+  height: 60px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.clearBtn {
+  background: #e0e0e0;
+}
+
+.printBtn {
+  background: #111;
+  color: white;
+}
+
+.printBtn:disabled {
+  background: #cfcfcf;
+  color: #888;
+
+  cursor: not-allowed;
+}
+
+.printBtn:disabled {
+  background: #bdbdbd;
+
+  cursor: not-allowed;
+
+  opacity: 0.7;
+}

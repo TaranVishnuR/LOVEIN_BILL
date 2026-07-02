@@ -1,0 +1,263 @@
+.page {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  padding: 30px;
+
+  height: 100%;
+
+  overflow-y: auto;
+
+  background: #f5f7fb;
+}
+
+.title {
+  font-size: 34px;
+
+  font-weight: 700;
+
+  color: #1f2937;
+}
+
+/* ===========================
+   SUMMARY CARDS
+=========================== */
+
+.cards {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 20px;
+}
+
+.card {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .08);
+}
+
+.card p {
+  color: #6b7280;
+
+  font-size: 15px;
+
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 34px;
+
+  color: #2563eb;
+
+  font-weight: 700;
+}
+
+.low {
+  color: #ef4444 !important;
+}
+
+/* ===========================
+   SECTIONS
+=========================== */
+
+.section {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 24px;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+.section h2 {
+  margin-bottom: 18px;
+
+  font-size: 22px;
+
+  color: #1f2937;
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+.table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.table thead {
+
+  background: #eef2ff;
+}
+
+.table th {
+
+  padding: 16px;
+
+  text-align: left;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+.table td {
+
+  padding: 15px 16px;
+
+  border-bottom: 1px solid #ececec;
+
+  font-size: 14px;
+
+  color: #374151;
+}
+
+.table tbody tr {
+
+  transition: .2s;
+}
+
+.table tbody tr:hover {
+
+  background: #f9fbff;
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.inStock {
+
+  display: inline-block;
+
+  background: #dcfce7;
+
+  color: #15803d;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.lowStock {
+
+  display: inline-block;
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+/* ===========================
+   EMPTY STATE
+=========================== */
+
+.empty {
+
+  text-align: center;
+
+  padding: 40px;
+
+  color: #9ca3af;
+
+  font-size: 15px;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+.page::-webkit-scrollbar {
+
+  width: 8px;
+}
+
+.page::-webkit-scrollbar-thumb {
+
+  background: #cbd5e1;
+
+  border-radius: 20px;
+}
+
+.page::-webkit-scrollbar-thumb:hover {
+
+  background: #94a3b8;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1400px) {
+
+  .cards {
+
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .cards {
+
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .cards {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .page {
+
+    padding: 16px;
+
+  }
+
+  .title {
+
+    font-size: 28px;
+
+  }
+
+}

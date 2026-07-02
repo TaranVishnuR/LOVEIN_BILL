@@ -1,0 +1,334 @@
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  padding: 30px;
+  background: #f6f8fc;
+  min-height: 100vh;
+}
+
+/* ==========================================================
+   Header
+========================================================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.addButton {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  background: #091224;
+  color: #fff;
+
+  padding: 14px 24px;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.addButton:hover {
+  background: #172554;
+}
+
+/* ==========================================================
+   Dashboard Cards
+========================================================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 22px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+.card p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.card h2 {
+  margin-top: 14px;
+
+  font-size: 22px;
+  color: #111827;
+}
+
+/* ==========================================================
+   Search
+========================================================== */
+
+.searchBar {
+  margin-bottom: 24px;
+}
+
+.searchBar input {
+  width: 420px;
+
+  padding: 13px 16px;
+
+  border-radius: 10px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.searchBar input:focus {
+  border-color: #2563eb;
+}
+
+/* ==========================================================
+   Table
+========================================================== */
+
+.tableCard {
+  background: white;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th {
+  padding: 18px;
+
+  text-align: left;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #374151;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+  padding: 18px;
+
+  font-size: 14px;
+
+  color: #374151;
+
+  border-bottom: 1px solid #f1f5f9;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================
+   Status
+========================================================== */
+
+.completed {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 92px;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  background: #dcfce7;
+
+  color: #166534;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+.edit,
+.delete,
+.cancel,
+.confirmDelete {
+
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  padding: 9px 16px;
+
+  transition: .2s;
+
+  margin-right: 8px;
+}
+
+.edit {
+  background: #2563eb;
+  color: white;
+}
+
+.edit:hover {
+  background: #1d4ed8;
+}
+
+.delete {
+  background: #ef4444;
+  color: white;
+}
+
+.delete:hover {
+  background: #dc2626;
+}
+
+.cancel {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.cancel:hover {
+  background: #d1d5db;
+}
+
+.confirmDelete {
+  background: #dc2626;
+  color: white;
+}
+
+.confirmDelete:hover {
+  background: #b91c1c;
+}
+
+/* ==========================================================
+   Empty Table
+========================================================== */
+
+.empty {
+  text-align: center;
+  padding: 45px;
+  color: #6b7280;
+}
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media (max-width:1300px){
+
+.cards{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+@media (max-width:1000px){
+
+.cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:18px;
+
+}
+
+.searchBar input{
+
+width:100%;
+
+}
+
+.tableCard{
+
+overflow-x:auto;
+
+}
+
+}
+
+@media (max-width:650px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.header h1{
+
+font-size:32px;
+
+}
+
+.addButton{
+
+width:100%;
+
+}
+
+}

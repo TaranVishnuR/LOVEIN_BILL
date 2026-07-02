@@ -1,0 +1,70 @@
+.bar {
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 30px;
+
+  border-bottom: 1px solid #ddd;
+
+  background: white;
+}
+
+.bar h1 {
+  margin: 0;
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.addBtn,
+.editBtn,
+.logoutBtn {
+  height: 48px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.addBtn {
+  background: #111;
+  color: white;
+}
+
+.editBtn {
+  background: #1976d2;
+  color: white;
+}
+
+.logoutBtn {
+  background: #e53935;
+  color: white;
+}
+
+.saveBtn {
+  background: #16a34a;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 14px 24px;
+
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
