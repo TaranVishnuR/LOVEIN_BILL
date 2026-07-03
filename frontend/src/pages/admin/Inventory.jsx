@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../services/api";
 import styles from "./Inventory.module.css";
 
 export default function Inventory() {
@@ -19,10 +19,7 @@ export default function Inventory() {
 
   const loadInventory = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/inventory-dashboard"
-      );
-
+      const response = await api.get("/inventory-dashboard");
       setInventory(response.data);
     } catch (error) {
       console.error(error);

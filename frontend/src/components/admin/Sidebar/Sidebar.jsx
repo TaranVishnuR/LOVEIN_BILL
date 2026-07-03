@@ -1,35 +1,33 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import api from "../../../../services/api";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
   const navigate = useNavigate();
 
   const logout = async () => {
-  try {
-    await axios.post(
-      "http://localhost:5000/api/auth/logout",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+      await api.post(
+        "/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
 
-  // Optimized: Changed from .clear() to preserve your local UI preferences, theme setups, and thermal printer hardware selections
-  localStorage.removeItem("token");
-  localStorage.removeItem("role");
-  localStorage.removeItem("sessionId");
-  localStorage.removeItem("email");
+    // Optimized: Changed from .clear() to preserve your local UI preferences, theme setups, and thermal printer hardware selections
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("sessionId");
+    localStorage.removeItem("email");
 
-  navigate("/");
-};
-
+    navigate("/");
+  };
 
   return (
     <aside className={styles.sidebar}>

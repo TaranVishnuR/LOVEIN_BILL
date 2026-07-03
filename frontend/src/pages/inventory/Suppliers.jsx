@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-
 import styles from "./Suppliers.module.css";
-
 import SupplierModal from "../../components/SupplierModal/SupplierModal";
+import api from "../../../services/api";
 
 export default function Suppliers() {
 
@@ -32,29 +30,17 @@ export default function Suppliers() {
   }, []);
 
   const loadSuppliers = async () => {
+  try {
+    const response = await api.get("/suppliers");
+    setSuppliers(response.data);
 
-    try {
+    const materialResponse = await api.get("/raw-materials");
+    setMaterials(materialResponse.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-      const response =
-        await axios.get(
-          "http://localhost:5000/api/suppliers"
-        );
-
-      setSuppliers(response.data);
-
-      const materialResponse = await axios.get(
-  "http://localhost:5000/api/raw-materials"
-);
-
-setMaterials(materialResponse.data);
-
-    } catch (error) {
-
-      console.error(error);
-
-    }
-
-  };
 
   const filteredSuppliers =
     suppliers.filter((supplier) =>
@@ -90,50 +76,33 @@ const lastPurchase =
 
   // const lastPurchase = "-";
 
-  const deleteSupplier =
-    async (id) => {
-
-      try {
-
-        await axios.delete(
-          `http://localhost:5000/api/suppliers/${id}`
-        );
-
-        setDeleteId(null);
-
-        await loadSuppliers();
-
-      } catch (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to delete supplier."
-        );
-
-      }
-
-    };
-
-    const toggleSupplierStatus = async (id) => {
-
+  const deleteSupplier = async (id) => {
   try {
+    await api.delete(`/suppliers/${id}`);
 
-    await axios.patch(
-      `http://localhost:5000/api/suppliers/${id}/status`
-    );
+    setDeleteId(null);
 
     await loadSuppliers();
-
   } catch (error) {
+    console.error(error);
 
+    alert("Unable to delete supplier.");
+  }
+};
+
+
+    const toggleSupplierStatus = async (id) => {
+  try {
+    await api.patch(`/suppliers/${id}/status`);
+
+    await loadSuppliers();
+  } catch (error) {
     console.error(error);
 
     alert("Unable to update supplier status.");
-
   }
-
 };
+
 
   return (
 

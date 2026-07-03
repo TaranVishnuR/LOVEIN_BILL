@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../services/api";
 
 import styles from "./RawMaterials.module.css";
 
@@ -18,7 +18,7 @@ export default function RawMaterials() {
 
   const loadMaterials = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/raw-materials");
+      const response = await api.get("/raw-materials");
       setMaterials(response.data);
     } catch (error) {
       console.error(error);
@@ -26,24 +26,17 @@ export default function RawMaterials() {
   };
 
   const filteredMaterials = materials.filter((material) => {
+    const keyword = search.toLowerCase();
 
-  const keyword = search.toLowerCase();
-
-  return (
-
-    (material.material_name || "")
-      .toLowerCase()
-      .includes(keyword)
-
-    ||
-
-    (material.supplier_name || "")
-      .toLowerCase()
-      .includes(keyword)
-
-  );
-
-});
+    return (
+      (material.material_name || "")
+        .toLowerCase()
+        .includes(keyword) ||
+      (material.supplier_name || "")
+        .toLowerCase()
+        .includes(keyword)
+    );
+  });
 
   const totalPurchases = materials.length;
 
@@ -57,13 +50,10 @@ export default function RawMaterials() {
     (m) => Number(m.available_stock) === 0
   ).length;
 
-  const totalValue =
-materials.reduce(
-(sum,item)=>
-sum+
-Number(item.purchase_total_amount || 0),
-0
-);
+  const totalValue = materials.reduce(
+    (sum, item) => sum + Number(item.purchase_total_amount || 0),
+    0
+  );
 
   const getStatus = (material) => {
     const stock = Number(material.available_stock);
@@ -76,7 +66,7 @@ Number(item.purchase_total_amount || 0),
 
   const deleteMaterial = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/raw-materials/${id}`);
+      await api.delete(`/raw-materials/${id}`);
       setDeleteId(null);
       await loadMaterials();
     } catch (error) {
@@ -183,44 +173,38 @@ Number(item.purchase_total_amount || 0),
                     {material.available_stock} {material.unit}
                   </td>
                   <td>
-  {material.purchase_date
-    ? new Date(material.purchase_date).toLocaleDateString(
-        "en-IN",
-        {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        }
-      )
-    : "-"}
-</td>
+                    {material.purchase_date
+                      ? new Date(material.purchase_date).toLocaleDateString(
+                          "en-IN",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )
+                      : "-"}
+                  </td>
                   <td>
-  ₹{Number(material.cost_per_unit).toLocaleString()}
-</td>
-
-<td>
-  ₹{Number(material.purchase_total_amount || 0).toLocaleString()}
-</td>
-
-<td>
-  {material.supplier_name}
-</td>
-
-<td>
-  <span
-    className={`${styles.status} ${
-      styles[
-        getStatus(material)
-          .replaceAll(" ", "")
-          .toLowerCase()
-      ]
-    }`}
-  >
-    {getStatus(material)}
-  </span>
-</td>
-
-<td>
+                    ₹{Number(material.cost_per_unit).toLocaleString()}
+                  </td>
+                  <td>
+                    ₹{Number(material.purchase_total_amount || 0).toLocaleString()}
+                  </td>
+                  <td>{material.supplier_name}</td>
+                  <td>
+                    <span
+                      className={`${styles.status} ${
+                        styles[
+                          getStatus(material)
+                            .replaceAll(" ", "")
+                            .toLowerCase()
+                        ]
+                      }`}
+                    >
+                      {getStatus(material)}
+                    </span>
+                  </td>
+                  <td>
                     <button
                       className={styles.edit}
                       onClick={() => {

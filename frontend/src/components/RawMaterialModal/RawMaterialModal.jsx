@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../services/api";
 
 import styles from "./RawMaterialModal.module.css";
 
@@ -100,13 +100,13 @@ export default function RawMaterialModal({
 
     try {
       if (material) {
-        await axios.put(
-          `http://localhost:5000/api/raw-materials/${material.id}`,
+        await api.put(
+          `/raw-materials/${material.id}`,
           payload
         );
       } else {
-        await axios.post(
-          "http://localhost:5000/api/raw-materials",
+        await api.post(
+          "/raw-materials",
           payload
         );
       }

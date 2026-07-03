@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../services/api";
 
 import styles from "./Dashboard.module.css";
 
@@ -28,10 +28,7 @@ export default function Dashboard() {
 
   const loadDashboard = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/inventory-dashboard"
-      );
-
+      const response = await api.get("/inventory-dashboard");
       setDashboard(response.data);
     } catch (error) {
       console.error(error);
@@ -97,16 +94,6 @@ export default function Dashboard() {
             value: dashboard.summary.suppliers,
             color: "#0ea5e9",
           },
-          // {
-          //   title: "Inventory Value",
-          //   value: `₹${Number(
-          //     dashboard.summary.inventoryValue
-          //   ).toLocaleString("en-IN", {
-          //     minimumFractionDigits: 2,
-          //     maximumFractionDigits: 2,
-          //   })}`,
-          //   color: "#14b8a6",
-          // },
         ].map((card) => (
           <div
             key={card.title}

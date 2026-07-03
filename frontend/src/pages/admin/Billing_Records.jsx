@@ -35,14 +35,16 @@ export default function Billing_Records() {
     }
   };
 
-    const handleExportTrigger = async (targetRange) => {
+  const handleExportTrigger = async (targetRange) => {
     // Immediately collapse the modal overlay to maintain fluid UI interactions
     setExportModal({ open: false, type: "" });
     
     // Retrieve authentication credentials and resolve download endpoints dynamically
     const token = localStorage.getItem("token");
     const routePath = exportModal.type === "EXCEL" ? "excel" : "pdf";
-    const downloadUrl = `http://localhost:5000/api/billing-records/export/${routePath}?filter=${targetRange}&token=${token}`;
+    
+    // Updated to use the environment variable for direct browser downloads
+    const downloadUrl = `${import.meta.env.VITE_API_URL}/api/billing-records/export/${routePath}?filter=${targetRange}&token=${token}`;
 
     if (exportModal.type === "PDF") {
       // PDF mode opens the system layout in a fresh background tab to trigger window.print() natively
@@ -58,7 +60,7 @@ export default function Billing_Records() {
     }
   };
 
-     const generateExcelSpreadsheet = (data, range) => {
+  const generateExcelSpreadsheet = (data, range) => {
     let csvContent = "\uFEFF"; 
     csvContent += `LOVEIN POS BILLING REPORT (${range.toUpperCase()})\r\n`;
     csvContent += `Total Bills,${data.summary.totalBills},Total Sales,INR ${data.summary.totalSales},Cash Sales,INR ${data.summary.cashSales},UPI Sales,INR ${data.summary.upiSales},Split Bills,${data.summary.splitBills}\r\n\r\n`;
@@ -183,93 +185,6 @@ export default function Billing_Records() {
           </button>
         ))}
       </div>
-
-      <div className={styles.cards}>
-        <div className={styles.card}>
-          <p>Total Bills</p>
-          <h2>{records.summary.totalBills || 0}</h2>
-        </div>
-        <div className={styles.card}>
-          <p>Total Sales</p>
-          <h2>
-            ₹{Number(records.summary.totalSales || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-          </h2>
-        </div>
-        <div className={styles.card}>
-          <p>Cash Sales</p>
-          <h2>
-            ₹{Number(records.summary.cashSales || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-          </h2>
-        </div>
-        <div className={styles.card}>
-          <p>UPI Sales</p>
-          <h2>
-            ₹{Number(records.summary.upiSales || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-          </h2>
-        </div>
-        <div className={styles.card}>
-          <p>Split Bills</p>
-          <h2>{records.summary.splitBills || 0}</h2>
-        </div>
-      </div>
-
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Bill No</th>
-              <th>Date & Time</th>
-              <th>Payment</th>
-              <th>Items</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.bills.length === 0 ? (
-              <tr>
-                <td colSpan="5" className={styles.empty}>No Bills Found For This Range</td>
-              </tr>
-            ) : (
-              records.bills.map((bill, index) => (
-                <tr key={`bill-${bill.id || bill.bill_number}-${index}`}>
-                  <td>{bill.bill_number}</td>
-                  <td>
-                    {new Date(bill.created_at).toLocaleString("en-IN", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
-                  </td>
-                  <td>
-                    {bill.payment_method === "SPLIT"
-                      ? `Split (Cash: ₹${Number(bill.cash_amount).toFixed(2)} / UPI: ₹${Number(bill.upi_amount).toFixed(2)})`
-                      : bill.payment_method}
-                  </td>
-                  <td>{bill.total_items}</td>
-                  <td>
-                    ₹{Number(bill.total_amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      {exportModal.open && (
-        <div className={styles.exportOverlay}>
-          <div className={styles.exportModalCard}>
-            <h3>Export Ledger - Select Timeframe</h3>
-            <p>Choose the target reporting period for your <strong>{exportModal.type}</strong> document:</p>
-            <div className={styles.exportModalOptions}>
-              <button disabled={isExporting} onClick={() => handleExportTrigger("today")}>Today</button>
-              <button disabled={isExporting} onClick={() => handleExportTrigger("week")}>This Week</button>
-              <button disabled={isExporting} onClick={() => handleExportTrigger("month")}>This Month</button>
-              <button disabled={isExporting} onClick={() => handleExportTrigger("year")}>This Year</button>
-              <button disabled={isExporting} onClick={() => handleExportTrigger("all")}>All Time (Beginning to Now)</button>
-            </div>
-            <button className={styles.exportModalClose} onClick={() => setExportModal({ open: false, type: "" })}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

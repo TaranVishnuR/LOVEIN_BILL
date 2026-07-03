@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import api from "../../../services/api";
 import styles from "./Reports.module.css";
 
 import {
@@ -61,26 +61,16 @@ export default function Reports() {
 }, []);
 
   const loadReports = async () => {
+  try {
+    const response = await api.get("/reports");
+    setReport(response.data);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
-    try {
-
-      const response =
-        await axios.get(
-          "http://localhost:5000/api/reports"
-        );
-
-      setReport(response.data);
-
-    } catch (error) {
-
-      console.error(error);
-
-    } finally {
-
-      setLoading(false);
-
-    }
-  };
 
   if (loading) {
     return (

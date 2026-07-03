@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./ProductGrid.module.css";
-import axios from "axios";
+import api from "../../../services/api";
 import toast from "react-hot-toast";
 import { FaTrash } from "react-icons/fa";
 
@@ -39,8 +39,8 @@ export default function ProductGrid({
       e.preventDefault();
 
       try {
-        await axios.delete(
-          `http://localhost:5000/api/products/${productId}`
+        await api.delete(
+          `/products/${productId}`
         );
 
         toast.success(
@@ -139,27 +139,27 @@ export default function ProductGrid({
                     }
                   >
                     <div
-  className={styles.cancelBtn}
-  onClick={(e) => {
-    e.stopPropagation();
-    setDeleteTarget(null);
-  }}
->
-  Cancel
-</div>
+                      className={styles.cancelBtn}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setDeleteTarget(null);
+                      }}
+                    >
+                      Cancel
+                    </div>
 
                     <div
-  className={styles.confirmDeleteBtn}
-  onClick={(e) =>
-    handleDeleteProduct(
-      e,
-      product.id,
-      product.name
-    )
-  }
->
-  Delete
-</div>
+                      className={styles.confirmDeleteBtn}
+                      onClick={(e) =>
+                        handleDeleteProduct(
+                          e,
+                          product.id,
+                          product.name
+                        )
+                      }
+                    >
+                      Delete
+                    </div>
                   </div>
                 </div>
               )}
