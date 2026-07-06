@@ -18,11 +18,15 @@ import InventoryDashboard from "../pages/inventory/Dashboard";
 
 import RawMaterials from "../pages/inventory/RawMaterials";
 
+import Procurement from "../pages/inventory/Procurement";
+
 import Suppliers from "../pages/inventory/Suppliers";
 
 import Recipes from "../pages/inventory/Recipes";
 
 import Production from "../pages/inventory/Production";
+
+import Dispatch from "../pages/inventory/Dispatch";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -114,6 +118,11 @@ export default function AppRouter() {
   />
 
   <Route
+    path="procurement"
+    element={<Procurement />}
+  />
+
+  <Route
     path="suppliers"
     element={<Suppliers />}
   />
@@ -126,6 +135,11 @@ export default function AppRouter() {
   <Route
     path="production"
     element={<Production />}
+  />
+
+  <Route
+    path="dispatch"
+    element={<Dispatch />}
   />
 
 </Route>

@@ -30,42 +30,56 @@ export default function InventoryLayout() {
         <p className={styles.role}>Inventory Manager</p>
 
         <nav>
-          <NavLink
-            end
-            to="/inventory"
-            className={({ isActive }) => (isActive ? styles.active : styles.link)}
-          >
-            Dashboard
-          </NavLink>
+  <NavLink
+    end
+    to="/inventory"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Dashboard
+  </NavLink>
 
-          <NavLink
-            to="/inventory/raw-materials"
-            className={({ isActive }) => (isActive ? styles.active : styles.link)}
-          >
-            Raw Materials
-          </NavLink>
+  <NavLink
+    to="/inventory/raw-materials"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Raw Materials
+  </NavLink>
 
-          <NavLink
-            to="/inventory/suppliers"
-            className={({ isActive }) => (isActive ? styles.active : styles.link)}
-          >
-            Suppliers
-          </NavLink>
+  <NavLink
+    to="/inventory/procurement"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Procurement
+  </NavLink>
 
-          <NavLink
-            to="/inventory/recipes"
-            className={({ isActive }) => (isActive ? styles.active : styles.link)}
-          >
-            Recipes
-          </NavLink>
+  <NavLink
+    to="/inventory/suppliers"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Suppliers
+  </NavLink>
 
-          <NavLink
-            to="/inventory/production"
-            className={({ isActive }) => (isActive ? styles.active : styles.link)}
-          >
-            Production
-          </NavLink>
-        </nav>
+  <NavLink
+    to="/inventory/recipes"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Recipes
+  </NavLink>
+
+  <NavLink
+    to="/inventory/production"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Production
+  </NavLink>
+
+  <NavLink
+    to="/inventory/dispatch"
+    className={({ isActive }) => (isActive ? styles.active : styles.link)}
+  >
+    Dispatch
+  </NavLink>
+</nav>
 
         <PWAInstallButton />
 

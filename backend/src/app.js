@@ -17,6 +17,11 @@ const productionRoutes = require("./routes/productionRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 const productionCalculatorRoutes = require("./routes/productionCalculatorRoutes");
 const invDashboardRoutes = require("./routes/invDashboardRoutes");
+const procurementRoutes = require(
+  "./routes/procurementRoutes"
+);
+
+const dispatchRoutes = require("./routes/dispatchRoutes");
 
 const app = express();
 
@@ -73,6 +78,13 @@ app.use("/api/suppliers", supplierRoutes);
 app.use("/api/production", productionRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/production-calculator", productionCalculatorRoutes);
+
+app.use(
+  "/api/procurements",
+  procurementRoutes
+);
+
+app.use("/api/dispatches", dispatchRoutes);
 
 app.get("/", (req, res) => {
   res.json({

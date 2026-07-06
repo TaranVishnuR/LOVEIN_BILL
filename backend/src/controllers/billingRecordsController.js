@@ -1,99 +1,232 @@
 const billingRecordsService = require("../services/billingRecordsService");
 
+// ==========================================
+// GET BILLING RECORDS
+// ==========================================
+
 exports.getBillingRecords = async (req, res) => {
   try {
     const filter = req.query.filter || "today";
+    const search = req.query.search || "";
 
     const [summary, bills] = await Promise.all([
       billingRecordsService.getBillingSummary(filter),
-      billingRecordsService.getBillingRecords(filter),
+      billingRecordsService.getBillingRecords(filter, search),
     ]);
 
-    res.json({
+    res.status(200).json({
       summary,
       bills,
     });
   } catch (error) {
     console.error(error);
-    const status = error.status || 500;
-    res.status(status).json({
-      message: error.message || "Failed to load billing records",
+
+    res.status(500).json({
+      message: "Failed to load billing records.",
     });
   }
 };
+
+// ==========================================
+// EXPORT EXCEL
+// ==========================================
 
 exports.exportToExcel = async (req, res) => {
   try {
-    const filter = req.query.filter || "all";
-    const data = await billingRecordsService.getBillingRecords(filter);
+    const filter = req.query.filter || "today";
+    const search = req.query.search || "";
 
-    res.setHeader("Content-Type", "text/csv; charset=utf-8");
-    res.setHeader("Content-Disposition", `attachment; filename=Lovein_Sales_Report_${filter}.csv`);
+    const bills = await billingRecordsService.getBillingRecords(
+      filter,
+      search
+    );
 
     let csv = "\uFEFF";
-    csv += "Bill Number,Date & Time,Payment Method,Cash Component,UPI Component,Total Amount\r\n";
+    csv +=
+      "Bill Number,Date & Time,Payment,Cash,UPI,Items,Amount\r\n";
 
-    data.forEach((b) => {
-      const date = new Date(b.created_at).toLocaleString("en-IN").replace(",", "");
-      csv += `"${b.bill_number}","${date}","${b.payment_method}",${b.cash_amount || 0},${b.upi_amount || 0},${b.total_amount || 0}\r\n`;
+    bills.forEach((bill) => {
+      csv += `"${bill.bill_number}","${new Date(
+        bill.created_at
+      ).toLocaleString("en-IN")}","${bill.payment_method}",${
+        bill.cash_amount
+      },${bill.upi_amount},${bill.total_items},${
+        bill.total_amount
+      }\r\n`;
     });
 
-    return res.status(200).send(csv);
+    res.setHeader(
+      "Content-Type",
+      "text/csv; charset=utf-8"
+    );
+
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename=Lovein_Billing_${filter}.csv`
+    );
+
+    res.send(csv);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Failed to generate Excel download." });
+
+    res.status(500).json({
+      message: "Failed to export Excel.",
+    });
   }
 };
 
-exports.exportToPdfHtml = async (req, res) => {
+// ==========================================
+// EXPORT PDF
+// ==========================================
+
+exports.exportToPdf = async (req, res) => {
   try {
-    const filter = req.query.filter || "all";
+    const filter = req.query.filter || "today";
+    const search = req.query.search || "";
+
     const [summary, bills] = await Promise.all([
       billingRecordsService.getBillingSummary(filter),
-      billingRecordsService.getBillingRecords(filter)
+      billingRecordsService.getBillingRecords(filter, search),
     ]);
 
-    let rowsHtml = "";
-    bills.forEach((b) => {
-      const date = new Date(b.created_at).toLocaleString("en-IN", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
-      const payment = b.payment_method === "SPLIT" ? `Split (C: ₹${b.cash_amount} / U: ₹${b.upi_amount})` : b.payment_method;
-      rowsHtml += `<tr><td>${b.bill_number}</td><td>${date}</td><td>${payment}</td><td>${b.total_items || 1}</td><td>\u20B9${Number(b.total_amount).toFixed(2)}</td></tr>`;
-    });
+    const rows = bills
+      .map(
+        (bill) => `
+<tr>
+<td>${bill.bill_number}</td>
+<td>${new Date(bill.created_at).toLocaleString("en-IN")}</td>
+<td>${bill.payment_method}</td>
+<td>${bill.total_items}</td>
+<td>₹${Number(bill.total_amount).toFixed(2)}</td>
+</tr>
+`
+      )
+      .join("");
 
-    const htmlLayout = `
-      <html>
-        <head>
-          <title>Sales Ledger</title>
-          <style>
-            body { font-family: sans-serif; padding: 24px; color: #334155; }
-            h1 { margin: 0; font-size: 22px; color: #0f172a; }
-            .grid { display: flex; gap: 12px; margin: 20px 0; }
-            .card { border: 1px solid #e2e8f0; padding: 12px; flex: 1; border-radius: 6px; background: #f8fafc; }
-            .card p { margin: 0; font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; }
-            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-            th { background: #f1f5f9; text-align: left; padding: 10px; font-size: 12px; color: #475569; border-bottom: 2px solid #cbd5e1; }
-            td { padding: 10px; font-size: 13px; border-bottom: 1px solid #e2e8f0; }
-          </style>
-        </head>
-        <body onload="window.print();">
-          <h1>LOVEIN POS - Sales Ledger Report</h1>
-          <p>Reporting Period Scope: <strong>${filter.toUpperCase()}</strong></p>
-          <div class="grid">
-            <div class="card"><p>Total Bills</p><strong>${summary.totalBills}</strong></div>
-            <div class="card"><p>Total Revenue</p><strong>\u20B9${Number(summary.totalSales).toFixed(2)}</strong></div>
-            <div class="card"><p>Cash Volume</p><strong>\u20B9${Number(summary.cashSales).toFixed(2)}</strong></div>
-            <div class="card"><p>UPI Volume</p><strong>\u20B9${Number(summary.upiSales).toFixed(2)}</strong></div>
-          </div>
-          <table>
-            <thead><tr><th>Bill No</th><th>Date</th><th>Payment</th><th>Items</th><th>Amount</th></tr></thead>
-            <tbody>${rowsHtml}</tbody>
-          </table>
-        </body>
-      </html>`;
+    const html = `
+<!DOCTYPE html>
+<html>
 
-    return res.status(200).send(htmlLayout);
+<head>
+
+<meta charset="UTF-8">
+
+<title>LOVEIN Billing Report</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+padding:30px;
+color:#222;
+}
+
+h1{
+margin-bottom:5px;
+}
+
+.summary{
+display:flex;
+gap:20px;
+margin:20px 0;
+}
+
+.card{
+border:1px solid #ccc;
+padding:12px;
+border-radius:6px;
+min-width:140px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#f5f5f5;
+}
+
+</style>
+
+</head>
+
+<body onload="window.print()">
+
+<h1>LOVEIN Billing Report</h1>
+
+<p><b>Filter :</b> ${filter}</p>
+
+<div class="summary">
+
+<div class="card">
+<b>Total Bills</b><br>
+${summary.totalBills}
+</div>
+
+<div class="card">
+<b>Total Sales</b><br>
+₹${summary.totalSales}
+</div>
+
+<div class="card">
+<b>Cash Sales</b><br>
+₹${summary.cashSales}
+</div>
+
+<div class="card">
+<b>UPI Sales</b><br>
+₹${summary.upiSales}
+</div>
+
+<div class="card">
+<b>Split Bills</b><br>
+${summary.splitBills}
+</div>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Bill No</th>
+<th>Date</th>
+<th>Payment</th>
+<th>Items</th>
+<th>Amount</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+${rows}
+
+</tbody>
+
+</table>
+
+</body>
+
+</html>
+`;
+
+    res.setHeader("Content-Type", "text/html");
+    res.send(html);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Failed to compile PDF print template." });
+
+    res.status(500).json({
+      message: "Failed to export PDF.",
+    });
   }
 };

@@ -65,15 +65,19 @@ export default function RawMaterials() {
   };
 
   const deleteMaterial = async (id) => {
-    try {
-      await api.delete(`/raw-materials/${id}`);
-      setDeleteId(null);
-      await loadMaterials();
-    } catch (error) {
-      console.error(error);
-      alert("Unable to delete material.");
-    }
-  };
+  try {
+    await api.delete(`/raw-materials/${id}`);
+    setDeleteId(null);
+    await loadMaterials();
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      error.response?.data?.message ||
+      "Unable to delete material."
+    );
+  }
+};
 
   return (
     <div className={styles.page}>

@@ -1,7 +1,19 @@
 const express = require("express");
+
 const router = express.Router();
-const billingRecordsController = require("../controllers/billingRecordsController");
-const { verifyToken, requireRole } = require("../middleware/authMiddleware");
+
+const billingRecordsController = require(
+  "../controllers/billingRecordsController"
+);
+
+const {
+  verifyToken,
+  requireRole,
+} = require("../middleware/authMiddleware");
+
+// ==========================================
+// GET BILLING RECORDS
+// ==========================================
 
 router.get(
   "/",
@@ -10,6 +22,10 @@ router.get(
   billingRecordsController.getBillingRecords
 );
 
+// ==========================================
+// EXPORT EXCEL
+// ==========================================
+
 router.get(
   "/export/excel",
   verifyToken,
@@ -17,11 +33,15 @@ router.get(
   billingRecordsController.exportToExcel
 );
 
+// ==========================================
+// EXPORT PDF
+// ==========================================
+
 router.get(
   "/export/pdf",
   verifyToken,
   requireRole(["admin"]),
-  billingRecordsController.exportToPdfHtml
+  billingRecordsController.exportToPdf
 );
 
 module.exports = router;

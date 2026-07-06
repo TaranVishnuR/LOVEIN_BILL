@@ -1,22 +1,22 @@
-const rawMaterialService = require(
-  "../services/rawMaterialService"
+const dispatchService = require(
+  "../services/dispatchService"
 );
 
 // ==========================================
-// Get All Materials
+// Get All Dispatches
 // ==========================================
 
-exports.getAllMaterials = async (
+exports.getAllDispatches = async (
   req,
   res
 ) => {
 
   try {
 
-    const materials =
-      await rawMaterialService.getAllMaterials();
+    const dispatches =
+      await dispatchService.getAllDispatches();
 
-    res.json(materials);
+    res.json(dispatches);
 
   } catch (error) {
 
@@ -24,7 +24,7 @@ exports.getAllMaterials = async (
 
     res.status(500).json({
       message:
-        "Failed to fetch raw materials",
+        "Failed to fetch dispatches",
     });
 
   }
@@ -32,22 +32,22 @@ exports.getAllMaterials = async (
 };
 
 // ==========================================
-// Create Material
+// Create Dispatch
 // ==========================================
 
-exports.createMaterial = async (
+exports.createDispatch = async (
   req,
   res
 ) => {
 
   try {
 
-    const material =
-      await rawMaterialService.createMaterial(
+    const dispatch =
+      await dispatchService.createDispatch(
         req.body
       );
 
-    res.status(201).json(material);
+    res.status(201).json(dispatch);
 
   } catch (error) {
 
@@ -55,7 +55,7 @@ exports.createMaterial = async (
 
     res.status(500).json({
       message:
-        "Failed to create material",
+        "Failed to create dispatch",
     });
 
   }
@@ -63,18 +63,18 @@ exports.createMaterial = async (
 };
 
 // ==========================================
-// Update Material
+// Update Dispatch
 // ==========================================
 
-exports.updateMaterial = async (
+exports.updateDispatch = async (
   req,
   res
 ) => {
 
   try {
 
-    const material =
-      await rawMaterialService.updateMaterial(
+    const dispatch =
+      await dispatchService.updateDispatch(
 
         req.params.id,
 
@@ -82,16 +82,16 @@ exports.updateMaterial = async (
 
       );
 
-    if (!material) {
+    if (!dispatch.length) {
 
       return res.status(404).json({
         message:
-          "Material not found",
+          "Dispatch not found",
       });
 
     }
 
-    res.json(material);
+    res.json(dispatch);
 
   } catch (error) {
 
@@ -99,7 +99,7 @@ exports.updateMaterial = async (
 
     res.status(500).json({
       message:
-        "Failed to update material",
+        "Failed to update dispatch",
     });
 
   }
@@ -107,62 +107,24 @@ exports.updateMaterial = async (
 };
 
 // ==========================================
-// Delete Raw Material
+// Delete Dispatch
 // ==========================================
 
-exports.deleteMaterial = async (req, res) => {
-  try {
-    await rawMaterialService.deleteMaterial(req.params.id);
-
-    res.json({
-      message: "Material deleted successfully",
-    });
-
-  } catch (error) {
-
-    // Expected business validation errors
-    if (error.status) {
-      return res.status(error.status).json({
-        message: error.message,
-      });
-    }
-
-    // Unexpected server errors only
-    console.error(error);
-
-    res.status(500).json({
-      message: "Failed to delete material",
-    });
-
-  }
-};
-
-// ==========================================
-// Get Single Material
-// ==========================================
-
-exports.getMaterialById = async (
+exports.deleteDispatch = async (
   req,
   res
 ) => {
 
   try {
 
-    const material =
-      await rawMaterialService.getMaterialById(
-        req.params.id
-      );
+    await dispatchService.deleteDispatch(
+      req.params.id
+    );
 
-    if (!material) {
-
-      return res.status(404).json({
-        message:
-          "Material not found",
-      });
-
-    }
-
-    res.json(material);
+    res.json({
+      message:
+        "Dispatch deleted successfully",
+    });
 
   } catch (error) {
 
@@ -170,7 +132,47 @@ exports.getMaterialById = async (
 
     res.status(500).json({
       message:
-        "Failed to fetch material",
+        "Failed to delete dispatch",
+    });
+
+  }
+
+};
+
+// ==========================================
+// Get Single Dispatch
+// ==========================================
+
+exports.getDispatchById = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const dispatch =
+      await dispatchService.getDispatchById(
+        req.params.id
+      );
+
+    if (!dispatch.length) {
+
+      return res.status(404).json({
+        message:
+          "Dispatch not found",
+      });
+
+    }
+
+    res.json(dispatch);
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      message:
+        "Failed to fetch dispatch",
     });
 
   }

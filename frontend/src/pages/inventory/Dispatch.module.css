@@ -1,0 +1,284 @@
+/* --- Global / Layout --- */
+.page {
+  padding: 30px;
+  background: #f6f8fc;
+  min-height: 100vh; /* Fixed: 100% height fails if parent has no height */
+  box-sizing: border-box;
+}
+
+/* --- Header Section --- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-size: 34px;
+  color: #111827;
+  font-weight: 700;
+  margin: 0;
+}
+
+.addButton {
+  background: #2563eb;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 14px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.addButton:hover {
+  background: #1d4ed8;
+}
+
+/* --- Responsive Grid Cards --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .06);
+}
+
+.card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0 0 12px 0;
+}
+
+.card h2 {
+  font-size: 32px;
+  color: #111827;
+  margin: 0;
+}
+
+/* --- Filter & Search Section --- */
+.searchSection {
+  display: flex;
+  justify-content: flex-start; /* Changed from space-between to keep items together */
+  align-items: center;
+  margin-bottom: 22px;
+  gap: 16px; /* Controls the exact spacing between search and filter */
+}
+
+.searchBar {
+  flex: initial; /* Fixed: Prevents the search bar from stretching across the screen */
+}
+
+.searchBar input {
+  width: 320px; /* Keeps your clean, explicit width constraint */
+  padding: 13px 18px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.searchBar input:focus {
+  border-color: #2563eb;
+}
+
+.filterBar select {
+  width: 180px;
+  padding: 13px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.filterBar select:focus {
+  border-color: #2563eb;
+}
+
+/* --- Data Table Container --- */
+.tableCard {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+}
+
+th {
+  text-align: left;
+  padding: 18px;
+  font-size: 15px;
+  color: #374151;
+}
+
+td {
+  padding: 16px 18px;
+  border-top: 1px solid #edf0f4;
+  font-size: 14px;
+  color: #374151;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* --- Badges & Status Tags --- */
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.healthy {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.low {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.outofstock {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* --- Table Action Buttons --- */
+.edit {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background 0.2s ease;
+}
+
+.edit:hover {
+  background: #1d4ed8;
+}
+
+.delete {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete:hover {
+  background: #dc2626;
+}
+
+.empty {
+  text-align: center;
+  padding: 45px;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+/* --- Inline Delete / Banner States --- */
+.deleteRow {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff6f6;
+}
+
+.deleteButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.confirmDelete {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.confirmDelete:hover {
+  background: #dc2626;
+}
+
+.cancelDelete {
+  background: #e5e7eb;
+  color: #374151;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cancelDelete:hover {
+  background: #d1d5db;
+}
+
+/* --- Media Queries --- */
+@media (max-width: 1300px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .searchSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchBar input {
+    max-width: 100%;
+  }
+
+  .filterBar select {
+    width: 100%;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .tableCard {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
