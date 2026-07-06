@@ -77,7 +77,7 @@ export default function Login() {
                 className={styles.eyeButton}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? "👁️" : "👁️‍🗨️"}
+                {showPassword ? "" : ""}
               </button>
             </div>
           </div>

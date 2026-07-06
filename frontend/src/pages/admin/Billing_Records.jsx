@@ -37,7 +37,7 @@ export default function Billing_Records() {
 
     const timer = setInterval(() => {
       loadBills();
-    }, 5000);
+    }, 50000);
 
     return () => clearInterval(timer);
 
