@@ -107,7 +107,7 @@ export default function Inventory() {
       ======================= */}
 
       <div className={styles.section}>
-        <h2>⚠ Low Stock Materials</h2>
+        <h2>Low Stock Materials</h2>
 
         <table className={styles.table}>
           <thead>
@@ -162,7 +162,7 @@ export default function Inventory() {
       ======================= */}
 
       <div className={styles.section}>
-        <h2>🛒 Recent Purchases</h2>
+        <h2>Recent Purchases</h2>
 
         <table className={styles.table}>
           <thead>
@@ -221,7 +221,7 @@ export default function Inventory() {
       ======================= */}
 
       <div className={styles.section}>
-        <h2>🏭 Today's Production</h2>
+        <h2>Today's Production</h2>
 
         <table className={styles.table}>
           <thead>
