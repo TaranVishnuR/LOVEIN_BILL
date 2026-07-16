@@ -311,15 +311,7 @@ export default function Billing_Records() {
         </div>
 
       </div>
-
-      {/* ==========================
-          PART 2 STARTS HERE
-          Bills Table
-      ========================== */}
-      {/* ==========================
-    PART 2 STARTS HERE
-========================== */}
-
+      
       <div className={styles.tableContainer}>
 
         <table className={styles.table}>

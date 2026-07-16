@@ -55,15 +55,6 @@ const generalLimiter = rateLimit({
 });
 app.use("/api/", generalLimiter);
 
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 15,
-  message: { error: "Too many login attempts. Please wait 15 minutes." },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
-app.use("/api/auth", authLimiter);
-
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/sales", saleRoutes);

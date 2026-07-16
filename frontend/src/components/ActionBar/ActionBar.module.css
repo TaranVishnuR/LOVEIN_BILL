@@ -1,15 +1,15 @@
 .bar {
-  height: 90px;
-
-  border-top: 1px solid #ddd;
-
-  padding: 0 20px;
+  height: 95px;
 
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
-  background: #fafafa;
+  padding: 0 24px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e7eb;
 
   flex-shrink: 0;
 }
@@ -17,66 +17,96 @@
 .buttons {
   display: flex;
   align-items: center;
+
   gap: 16px;
+
+  flex-wrap: nowrap;
 }
 
 .paymentBtn {
-  width: 120px;
-  height: 50px;
+  width: 130px;
+  height: 54px;
 
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  border: 2px solid #d1d5db;
+  border-radius: 12px;
 
-  background: white;
+  background: #ffffff;
+  color: #111827;
 
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.paymentBtn:hover {
+  border-color: #2563eb;
+}
+
+.paymentBtn:active {
+  transform: scale(0.98);
 }
 
 .activePayment {
-  background: #428de9;
-  color: white;
+  background: #2563eb;
+  color: #ffffff;
 
-  border-color: #111;
+  border-color: #2563eb;
 }
 
 .button {
-  width: 170px;
-  height: 60px;
+  height: 58px;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
 
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 17px;
+  font-weight: 700;
 
   cursor: pointer;
 
-  transition: 0.2s;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.button:active {
+  transform: scale(0.98);
 }
 
 .clearBtn {
-  background: #e0e0e0;
+  width: 170px;
+
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.clearBtn:hover {
+  background: #d1d5db;
 }
 
 .printBtn {
-  background: #111;
-  color: white;
+  width: 220px;
+
+  background: #111827;
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
 }
 
-.printBtn:disabled {
-  background: #cfcfcf;
-  color: #888;
-
-  cursor: not-allowed;
+.printBtn:hover:not(:disabled) {
+  background: #000000;
 }
 
 .printBtn:disabled {
   background: #bdbdbd;
+  color: #ffffff;
 
   cursor: not-allowed;
 

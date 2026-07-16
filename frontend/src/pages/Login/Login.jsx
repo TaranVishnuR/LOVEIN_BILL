@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 import styles from "./Login.module.css";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,16 +11,21 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (isLoggingIn) return;
+
+    setIsLoggingIn(true);
     setError("");
 
     try {
-      const response = await api.post(
-        "/auth/login",
-        { email, password }
-      );
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("email", email);
@@ -34,7 +40,11 @@ export default function Login() {
         navigate("/billing");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid Email or Password");
+      setError(
+        err.response?.data?.message || "Invalid Email or Password"
+      );
+
+      setIsLoggingIn(false);
     }
   };
 
@@ -47,6 +57,7 @@ export default function Login() {
         <form onSubmit={handleLogin} className={styles.form}>
           <div className={styles.inputGroup}>
             <label className={styles.label}>Email</label>
+
             <input
               className={styles.input}
               type="email"
@@ -60,7 +71,7 @@ export default function Login() {
 
           <div className={styles.inputGroup}>
             <label className={styles.label}>Password</label>
-            {/* Added your clean CSS positioning wrapper */}
+
             <div className={styles.passwordWrapper}>
               <input
                 className={`${styles.input} ${styles.passwordInput}`}
@@ -71,19 +82,25 @@ export default function Login() {
                 autoComplete="current-password"
                 required
               />
+
               <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className={styles.eyeButton}
-                aria-label={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? "" : ""}
-              </button>
+  type="button"
+  onClick={() => setShowPassword(!showPassword)}
+  className={styles.eyeButton}
+  aria-label={showPassword ? "Hide password" : "Show password"}
+  tabIndex={-1}
+>
+  {showPassword ? <FiEyeOff /> : <FiEye />}
+</button>
             </div>
           </div>
 
-          <button type="submit" className={styles.button}>
-            Login
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={isLoggingIn}
+          >
+            {isLoggingIn ? "Logging in..." : "Login"}
           </button>
 
           {error && <p className={styles.error}>{error}</p>}
